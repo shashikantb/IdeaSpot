@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card">
+    <h1>Search Results for "{{ query }}"</h1>
+    
+    {% if ideas %}
+        <p>{{ ideas|length }} ideas found</p>
+        {% for idea in ideas %}
+            <div class="idea-card">
+                <h3>{{ idea.title }}</h3>
+                <p>{{ idea.content|truncate(200) }}</p>
+                <small>Posted by <a href="{{ url_for('profile', username=idea.author.username) }}">
+                    {{ idea.author.username }}</a> on {{ idea.date_posted.strftime('%Y-%m-%d') }}</small>
+                {% if idea.category %}
+                    <span class="category-badge">{{ idea.category.name }}</span>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No ideas found matching your search.</p>
+    {% endif %}
+</div>
+{% endblock %}

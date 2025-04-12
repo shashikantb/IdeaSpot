@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="card">
+        <h1>Business Ideas</h1>
+        
+        {% if ideas %}
+            {% for idea in ideas %}
+                <div class="card" style="margin-bottom: 20px;">
+                    <h3>{{ idea.title }}</h3>
+                    <p>{{ idea.content }}</p>
+                    <small>Posted by {{ idea.author.username }} on {{ idea.date_posted.strftime('%Y-%m-%d') }}</small>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No business ideas have been posted yet.</p>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <img src="{{ url_for('static', filename='profile_pics/' + user.profile_pic) }}" 
+                         class="img-thumbnail mb-3" 
+                         style="max-width: 200px; max-height: 200px;">
+                    
+                    <h3>{{ user.username }}</h3>
+                    <p class="text-muted">Member since {{ user.date_joined.strftime('%Y-%m-%d') }}</p>
+                </div>
+                
+                <div class="col-md-8">
+                    <h4>Update Profile</h4>
+                    <form method="POST" action="{{ url_for('account') }}" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="profile_pic" class="form-label">Profile Picture</label>
+                            <input class="form-control" type="file" id="profile_pic" name="profile_pic">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="bio" class="form-label">Bio</label>
+                            <textarea class="form-control" id="bio" name="bio" rows="3">{{ user.bio if user.bio }}</textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Update Profile</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

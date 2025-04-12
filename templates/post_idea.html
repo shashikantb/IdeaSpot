@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="card">
+        <h1>Post a Business Idea</h1>
+        <form method="POST" action="{{ url_for('post_idea') }}">
+            <div class="form-group">
+                <label for="title">Idea Title</label>
+                <input type="text" class="form-control" id="title" name="title" required>
+            </div>
+            <div class="form-group">
+                <label for="content">Idea Description</label>
+                <textarea class="form-control" id="content" name="content" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn">Submit Idea</button>
+        </form>
+    </div>
+{% endblock %}

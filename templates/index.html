@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section class="card">
+        <h1>Welcome to Business Idea Platform</h1>
+        <p>A platform where innovators can share their business ideas and viewers can discover new opportunities.</p>
+        
+        {% if 'user_id' not in session %}
+            <p>Register today to get started!</p>
+            <a href="{{ url_for('register') }}" class="btn">Register</a>
+            <a href="{{ url_for('login') }}" class="btn">Login</a>
+        {% else %}
+            <p>Welcome back, {{ session['username'] }}!</p>
+            <a href="{{ url_for('dashboard') }}" class="btn">Go to Dashboard</a>
+        {% endif %}
+    </section>
+{% endblock %}
